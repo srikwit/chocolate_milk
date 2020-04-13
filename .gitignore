@@ -1,4 +1,5 @@
 /target
 /build
 /pxe
-
+bootloader/target/
+shared/*/Cargo.lock

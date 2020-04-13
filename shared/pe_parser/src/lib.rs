@@ -5,9 +5,9 @@ use core::convert::TryInto;
 const IMAGE_FILE_MACHINE_I386:   u16 = 0x014c;
 const IMAGE_FILE_MACHINE_X86_64: u16 = 0x8664;
 
-const IMAGE_SCN_MEM_EXECUTE: u32 = 0x20000000;
-const IMAGE_SCN_MEM_READ:    u32 = 0x40000000;
-const IMAGE_SCN_MEM_WRITE:   u32 = 0x80000000;
+const IMAGE_SCN_MEM_EXECUTE: u32 = 0x2000_0000;
+const IMAGE_SCN_MEM_READ:    u32 = 0x4000_0000;
+const IMAGE_SCN_MEM_WRITE:   u32 = 0x8000_0000;
 
 /// A validated PE file that has had some basic information parsed out of it.
 /// You can use functions on this structure to extract things like sections.
@@ -32,7 +32,7 @@ impl<'a> PeParser<'a> {
     /// Validate a PE file is sane, and return out a "parsed" version which
     /// can be used to access different information from the PE
     pub fn parse(bytes: &'a [u8]) -> Option<Self> {
-        let bytes: &[u8] = bytes.as_ref();
+        let bytes: &[u8] = bytes;
 
         // Check for an MZ header
         if bytes.get(0..2) != Some(b"MZ") { return None; }
